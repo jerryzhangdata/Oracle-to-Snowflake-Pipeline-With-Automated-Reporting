@@ -43,9 +43,13 @@ ALTER USER fivetran_user PROFILE fivetran_profile;
 SELECT USERNAME, PROFILE FROM DBA_USERS where USERNAME='FIVETRAN_USER';
 ```
 
-Next, we create an **EC2 instance** to serve as the **SSH Server**, tunneling Oracle traffic securely to Fivetran. For this demo, we once again selected a **minimal compute and storage configuration** (t3.micro, 8 GiB) to minimize cost. For networking configuration, we also create a new security group to allow SSH traffic (TCP Port 22) from the internet. 
+Next, we create an **EC2 instance** to serve as the **SSH Server**, tunneling Oracle traffic securely to Fivetran. For this demo, we once again selected a **minimal compute and storage configuration** (t3.micro, 8 GiB) to minimize cost.
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%204%20(EC2%20SSH%20Server).png)
+
+For networking configuration, we once again create a new security group to allow inbound traffic from **TCP port 22** (SSH) from the internet. To ensure SSH Server retains the same IP/hostname after stopping/restarting, we assign the server an Elastic IP address (public static IP).
+
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%206%20(Elastic%20IP).png)
 
 We then connect to the EC instance in the Terminal using SSH. Per [Fivetran's SSH guide](https://fivetran.com/docs/connectors/databases/connection-options#sshtunnel), we configure a fivetran user and enter the **Public SSH key** into the .ssh directory.
 
