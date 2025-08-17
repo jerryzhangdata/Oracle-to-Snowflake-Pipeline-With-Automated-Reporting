@@ -228,4 +228,5 @@ session.file.put(
     auto_compress = False # Prevents an issue where the file unzips to a folder
 )
 ```
-![alt text]('https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2013%20(Internal%20Stage).png')
+
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2013%20(Internal%20Stage).png)
