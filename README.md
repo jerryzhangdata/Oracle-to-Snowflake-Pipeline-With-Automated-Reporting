@@ -27,7 +27,7 @@ With the database provisioned, we verified connectivity by logging in via Oracle
 To move data from Oracle into Snowflake, we the managed ELT service **Fivetran**. Fivetran enables **Change Data Capture (CDC)**, automatically detecting new or updated records in Oracle and pushing them to Snowflake.
 
 ### 3a) Configuring Oracle RDS as Fivetran Connection
-Per the Fivetran [Amazon RDS for Oracle Setup Guide], we select **SSH** as the connection method. In SQL Developer, using the admin account, we run the query below to create a dedicated service account for Fivetran and grant it the necessary access privileges.
+Per the Fivetran [Amazon RDS for Oracle Setup Guide](https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/rds-setup-guide), we select **SSH** as the connection method. In SQL Developer, using the admin account, we run the query below to create a dedicated service account for Fivetran and grant it the necessary access privileges.
 
 ```sql
 -- Configured per fivetran setup guide: https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/setup-guide
