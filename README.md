@@ -85,6 +85,10 @@ We generate an SSH public/private key pair locally using the terminal. The publi
 -- Assign the public SSH key to the Fivetran user. The private key was entered into Fivetran when configuring the destination
 ALTER USER PC_FIVETRAN_USER
 SET RSA_PUBLIC_KEY = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn4ObTHy7EYPAyQv6anCcaloNBJfmxUWlE5jIeiMv7dq0FQcocEe24CWLIiP88gFdqWNwa/stmiu1DtTCeT8mQFa4x7hFwgJmvlN5OUK8tI+ucqyZRBhcI+vGDCud4e7p9Gq4EMP3k65PnAm/L8AhtZp2QUiW8qrJX31rrJTjmnPxNxwgfgWyI0Hq3j4gR252Hqhb6K76tQ4UqRC3smDzohZDjsXdtGUfEt2cEd6V47+P04Jo6vPkEunyGiArpwNCoT9UGng6SmMJ6DxmABYMCz3i+8eGUarxlZ6RNhvdY2emPrn0Ve74hkKRKudRNb9lsdUsK8GgppiksUrz601YoQIDAQAB';
+
+-- Validate user creation
+DESC USER PC_FIVETRAN_USER;
+
 ```
 
 Finally, we configure Snowflake as the Fivetran destination, with most settings automatically pre-filled through Partner Connect.
@@ -108,3 +112,14 @@ We query the Snowflake staging database and confirm that the new row has been lo
 
 
 ## 4) Automated Report Generation in Snowflake
+Using the sample dataset from Oracle, we generate a Word (.docx) report in a **Snowflake Notebook**. The report is created automatically with Python (`python-docx`) and saved to an **internal stage** for simple user access. This workflow allows users to generate reports entirely within Snowflake, with no local setup required.
+
+'''sql
+-- Create an internal stage to store the file results
+CREATE DATABASE IF NOT EXISTS ORACLE_REPORT_DEMO;
+CREATE SCHEMA IF NOT EXISTS ORACLE_REPORT_DEMO.INTERNAL_STAGES;
+CREATE STAGE IF NOT EXISTS ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REPORT;
+
+-- Validate stage creation
+LIST @ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REPORT;
+'''
