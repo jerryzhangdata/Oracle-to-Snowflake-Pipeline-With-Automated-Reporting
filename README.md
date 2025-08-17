@@ -93,9 +93,15 @@ To test the pipeline, we insert dummy data into the Oracle database and verify t
 
 ![](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2010%20(Dummy%20Data%20Insertion).png)
 
-In Fivetran, we trigger a manual sync. The interface indicates that we successfully loaded 1 new row.
+
+In Fivetran, we trigger a manual sync, and the interface confirms that one new row was successfully loaded.
 
 ![](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2011%20(Fivetran%20Sync).png)
+
+
+We query the Snowflake staging database and confirm that the new row has been loaded successfully!
+
+![](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2012%20(Confirm%20Data%20Load%20in%20Snowflake).png)
 
 
 ## 4) Automated Report Generation in Snowflake
