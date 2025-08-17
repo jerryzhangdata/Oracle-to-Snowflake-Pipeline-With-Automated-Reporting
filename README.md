@@ -6,3 +6,6 @@ Demonstrates cloud ETL skills by building a secure data pipeline from Oracle (AW
 2) Provisioning Oracle Database in AWS RDS
 3) Configuring Secure Connectivity and Database Access
 4) Automated Report Generation in Snowflake
+
+## 1) Project Overview & Architecture
+![Project Architecture](Project Architecture.png)
