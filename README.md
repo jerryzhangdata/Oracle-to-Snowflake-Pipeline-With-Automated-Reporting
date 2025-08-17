@@ -112,7 +112,7 @@ We query the Snowflake staging database and confirm that the new row has been lo
 
 
 ## 4) Automated Report Generation in Snowflake
-Using the sample dataset from Oracle, we generate a Word (.docx) report in a **Snowflake Notebook**. The report is created automatically with Python (`python-docx`) and saved to an **internal stage** for simple user access. This workflow allows users to generate reports entirely within Snowflake, with no local setup required.
+Using the sample dataset from Oracle, we generate a Word (.docx) report in a **Snowflake Notebook**. The report is created programmatically with **Python ('python-docx')** and saved to an **internal stage** for simple user access. This workflow allows users to generate reports entirely within Snowflake, with no local setup required.
 
 We start by creating an internal stage to store the Word report. In production, we could give users access to this stage so reports can be downloaded directly.
 ```sql
@@ -146,6 +146,7 @@ SELECT
 FROM PC_FIVETRAN_DB.ORACLE_RDS_DRUG_DISCOVERY_ADMIN.DRUG_DISCOVERY
 GROUP BY ACTIVE;
 ```
+To generate the report, we first load the query results into Pandas dataframes. Next, we use the **python-docx** package to build the Word document, including a header, paragraph, and table. Finally, we create a scatter plot in **Matplotlib** and insert it into the report with python-docx.
 
 ```python
 # Generate the word document report
