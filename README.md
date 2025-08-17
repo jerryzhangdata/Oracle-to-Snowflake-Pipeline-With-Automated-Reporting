@@ -216,4 +216,16 @@ doc.add_picture(chart_directory, width = docx.shared.Inches(5.4))
 
 Finally, the completed Word report is saved to the internal stage, where users can access and download it without any local setup.
 
-![]('https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2013%20(Internal%20Stage).png')
+```sql
+# Save to internal stage for easy user access
+doc_directory = f'{current_directory}/Drug Discovery Compound Activity Analysis.docx'
+doc.save(doc_directory)
+session = sp.Session.builder.getOrCreate()
+session.file.put(
+    doc_directory,
+    '@ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REPORT',
+    overwrite = True,
+    auto_compress = False # Prevents an issue where the file unzips to a folder
+)
+```
+![alt text]('https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2013%20(Internal%20Stage).png')
