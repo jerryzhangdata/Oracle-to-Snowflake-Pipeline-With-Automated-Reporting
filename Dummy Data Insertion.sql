@@ -19,8 +19,8 @@ INSERT INTO drug_discovery (
     active
 )
 VALUES (
-    'CID_TEST: ' || SUBSTR(CURRENT_TIMESTAMP, 1, 15),
-    'PID_TEST: ' || SUBSTR(CURRENT_TIMESTAMP, 1, 15),
+    'CID_TEST: ' || SUBSTR(CURRENT_TIMESTAMP, 1, 15), -- Add current timestamp for ease of testing
+    'PID_TEST: ' || SUBSTR(CURRENT_TIMESTAMP, 1, 15), -- Add current timestamp for ease of testing
     284.243,
     1.312,
     2,
