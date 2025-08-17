@@ -6,6 +6,9 @@ Demonstrates cloud ELT skills by building a secure data pipeline from Oracle (AW
 1) [Project Overview & Architecture](#1-project-overview--architecture)  
 2) [Provisioning Oracle Database in AWS RDS](#2-provisioning-oracle-database-in-aws-rds)  
 3) [Secure Connectivity and Database Access via Fivetran](#3-secure-connectivity-and-database-access-via-fivetran)  
+   - [3a) Configuring Oracle RDS as Fivetran Connection](#3a-configuring-oracle-rds-as-fivetran-connection)  
+   - [3b) Configuring Snowflake as Fivetran Destination](#3b-configuring-snowflake-as-fivetran-destination)  
+   - [3c) Testing the Pipeline](#3c-testing-the-pipeline)  
 4) [Automated Report Generation in Snowflake](#4-automated-report-generation-in-snowflake)  
 
 
