@@ -9,3 +9,9 @@ Demonstrates cloud ETL skills by building a secure data pipeline from Oracle (AW
 
 ## 1) Project Overview & Architecture
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Project%20Architecture.png)
+
+## 2) Provisioning Oracle Database in AWS RDS
+
+## 3) Configuring Secure Connectivity and Database Access
+
+## 4) Automated Report Generation in Snowflake
