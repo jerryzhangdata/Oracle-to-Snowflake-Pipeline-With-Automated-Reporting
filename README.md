@@ -24,5 +24,6 @@ With the database provisioned, we verified connectivity by logging in via Oracle
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%203%20(Oracle%20Data%20Load).png)
 
 ## 3) Secure Connectivity and Database Access via Fivetran
+To move data from Oracle into Snowflake, we the managed ELT service **Fivetran**. Fivetran enables **Change Data Capture (CDC)**, automatically detecting new or updated records in Oracle and pushing them to Snowflake.
 
 ## 4) Automated Report Generation in Snowflake
