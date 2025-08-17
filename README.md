@@ -8,7 +8,7 @@ Demonstrates cloud ETL skills by building a secure data pipeline from Oracle (AW
 4) [Automated Report Generation in Snowflake](#4-automated-report-generation-in-snowflake)  
 
 ## 1) Project Overview & Architecture
-![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/images/Project%20Architecture.png)
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Project%20Architecture.png)
 
 ## 2) Provisioning Oracle Database in AWS RDS
 We begin by provisioning an Oracle database instance in **Amazon RDS** to serve as the source system.  For this demo, we selected the **minimum supported compute and storage configuration** (db.m5.large, 20 GiB GP3) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer).
@@ -20,6 +20,8 @@ For networking configuration, we select **"Public Access:Yes"** to allow access 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%202%20(AWS%20Security%20Group).png)
 
 With the database provisioned, we verified connectivity by logging in via Oracle SQL Developer using the admin credentials. Next, we loaded a sample drug discovery dataset from [Kaggle](https://www.kaggle.com/datasets/shahriarkabir/drug-discovery-virtual-screening-dataset) into the Oracle database for use in this pipeline.
+
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%203%20(Oracle%20Data%20Load).png)
 
 ## 3) Configuring Secure Connectivity and Database Access
 
