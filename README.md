@@ -147,4 +147,69 @@ FROM PC_FIVETRAN_DB.ORACLE_RDS_DRUG_DISCOVERY_ADMIN.DRUG_DISCOVERY
 GROUP BY ACTIVE;
 ```
 
+```python
+# Generate the word document report
+import pandas as pd
+import snowflake.snowpark as sp
+import matplotlib.pyplot as plt
+import docx
+import docx.shared
+import os
+NROW_TABLE_1 = 2 # Does NOT include the header
+NCOL_TABLE_1 = 5
+
+# Load sql data into pandas dataframes
+drug_data = cell1.to_pandas()
+drug_data_table = cell2.to_pandas()
+
+# Create header and introductory paragraph
+doc = docx.Document()
+heading = doc.add_heading('Drug Discovery Compound Activity Analysis', 1)
+paragraph_1 = doc.add_paragraph('\nDrug discovery relies heavily on analyzing chemical compounds and their interactions with biological targets. Key molecular properties, such as binding affinity, hydrophobicity, and molecular weight, help researchers identify promising drug candidates. This report summarizes important findings from a sample dataset of compounds, highlighting differences between active and inactive molecules and exploring property relationships relevant to drug design.\n\n')
+run_1 = paragraph_1.add_run('The dataset was downloaded from - https://www.kaggle.com/datasets/shahriarkabir/drug-discovery-virtual-screening-dataset\n')
+
+# Create sample table
+table_1 = doc.add_table(rows = NROW_TABLE_1 + 1, cols = NCOL_TABLE_1)
+# Add the headers
+for i in range(NCOL_TABLE_1):
+    table_1.cell(0,i).text = str(drug_data_table.columns[i])
+    table_1.cell(0,i).paragraphs[0].runs[0].bold = True
+# Fill in the table
+for i in range(0, NROW_TABLE_1):
+    for j in range(0, NCOL_TABLE_1):
+        table_1.cell(i + 1, j).text = str(drug_data_table.iloc[i, j])
+paragraph_2 = doc.add_paragraph()
+run_2 = paragraph_2.add_run('Table 1: Summary of Compound Properties').italics = True
+
+# Create sample chart
+plt.scatter(
+    drug_data.loc[drug_data['ACTIVE'] == 0, 'MOLECULAR_WEIGHT'],
+    drug_data.loc[drug_data['ACTIVE'] == 0, 'HYDROPHOBICITY'],
+    alpha = 0.7,
+    label = 'Inactive',
+    color = 'grey'
+)
+plt.scatter(
+    drug_data.loc[drug_data['ACTIVE'] == 1, 'MOLECULAR_WEIGHT'],
+    drug_data.loc[drug_data['ACTIVE'] == 1, 'HYDROPHOBICITY'],
+    alpha = 0.7,
+    label = 'Active',
+    color = 'red'
+)
+plt.title(
+    'Chart 1: Hydrophobicity vs. Molecular Weight',
+    fontstyle = 'italic',
+    loc = 'left'
+)
+plt.xlabel('Molecular Weight (g/mol)')
+plt.ylabel('Hydrophobicity')
+plt.legend()
+# Convert to image to insert on word doc
+current_directory = os.getcwd()
+chart_directory = f'{current_directory}/binding_and_weight.png'
+plt.savefig(chart_directory)
+plt.close()
+# Inches(5.4) is the largest size that fits on page 1
+doc.add_picture(chart_directory, width = docx.shared.Inches(5.4))
+```
 
