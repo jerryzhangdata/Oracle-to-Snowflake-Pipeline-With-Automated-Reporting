@@ -11,6 +11,8 @@ Demonstrates cloud ETL skills by building a secure data pipeline from Oracle (AW
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/images/Project%20Architecture.png)
 
 ## 2) Provisioning Oracle Database in AWS RDS
+We begin by provisioning a database in AWS to use as our data source. In RDS (Relationship Database Service), we create an Oracle database using the minimum allowed storage and compute specifications. We configure the network settings to allow public access and ensure that TCP port 1521 is unblocked. Finally, we make record the Admin username/password and the Database name which is needed to connect to the database using Oracle SQL Developer.
+
 
 ## 3) Configuring Secure Connectivity and Database Access
 
