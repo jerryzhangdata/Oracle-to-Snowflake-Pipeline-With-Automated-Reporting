@@ -57,7 +57,7 @@ We then connect to the EC instance in the Terminal using SSH. Per [Fivetran's SS
 
 Finally, we configure the Fivetran connection, providing details for both the SSH server (host, SSH user) and the Oracle RDS database (host, database user/password, service name). We select **Fivetran Teleport Sync** as the connection method to enable CDC.
 
-![](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/upload/main/Images)
+![](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%207%20(Fivetran%20to%20Oracle%20RDS).png)
 
 ### 3b) Configuring Snowflake as Fivetran Destination
 
