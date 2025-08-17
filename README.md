@@ -124,9 +124,27 @@ CREATE STAGE IF NOT EXISTS ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REP
 -- Validate stage creation
 LIST @ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REPORT;
 ```
-In the Snowflake Notebook, we first query the required data. We calculate
+In the Snowflake Notebook, we begin by querying the full dataset that was synced from Oracle into Snowflake.  We then aggregate the data to calculate average chemical properties (binding affinity, molecular weight, etc.) for compounds that are classified as either active or inactive against the biological target.
 
-Please see [Drug Discovery Report.ipynb](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Snowflake%20Worksheets%20and%20Notebooks/Drug%20Discovery%20Report.ipynb) for the code in notebook format.
+Please see [Drug Discovery Report.ipynb](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Snowflake%20Worksheets%20and%20Notebooks/Drug%20Discovery%20Report.ipynb) the full notebook code.
 
+```sql
+-- Select the data from the oracle db table
+SELECT *
+    FROM PC_FIVETRAN_DB.ORACLE_RDS_DRUG_DISCOVERY_ADMIN.DRUG_DISCOVERY;
+
+-- Query data for the table in the word doc
+SELECT
+    CASE ACTIVE
+        WHEN 0 THEN 'Inactive'
+        WHEN 1 THEN 'Active'
+    END AS "Compound Activity",
+    ROUND(AVG(BINDING_AFFINITY), 2) AS "Avg. Binding Affinity",
+    ROUND(AVG(MOLECULAR_WEIGHT), 1) AS "Avg. Molecular Weight (g/mol)",
+    ROUND(AVG(HYDROPHOBICITY), 2) AS "Avg. Hydrophobicity",
+    ROUND(AVG(ROTATABLE_BONDS), 2) AS "Avg. Rotatable Bonds"
+FROM PC_FIVETRAN_DB.ORACLE_RDS_DRUG_DISCOVERY_ADMIN.DRUG_DISCOVERY
+GROUP BY ACTIVE;
+```
 
 
