@@ -124,3 +124,9 @@ CREATE STAGE IF NOT EXISTS ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REP
 -- Validate stage creation
 LIST @ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REPORT;
 ```
+In the Snowflake Notebook, we first query the required data. We calculate
+
+Please see [Drug Discovery Report.ipynb] (https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Snowflake%20Worksheets%20and%20Notebooks/Drug%20Discovery%20Report.ipynb) for the code in notebook format.
+
+
+
