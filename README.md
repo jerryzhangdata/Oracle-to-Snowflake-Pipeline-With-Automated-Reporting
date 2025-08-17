@@ -24,7 +24,7 @@ With the database provisioned, we verified connectivity by logging in via Oracle
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%203%20(Oracle%20Data%20Load).png)
 
 ## 3) Secure Connectivity and Database Access via Fivetran
-To move data from Oracle into Snowflake, we the managed ELT service **Fivetran**. Fivetran enables **Change Data Capture (CDC)**, automatically detecting new or updated records in Oracle and pushing them to Snowflake.
+To move data from Oracle into Snowflake, we the managed ELT service **Fivetran**. Fivetran enables **CDC (Change Data Capture)**, automatically detecting new or updated records in Oracle and pushing them to Snowflake.
 
 ### 3a) Configuring Oracle RDS as Fivetran Connection
 Per the Fivetran [Amazon RDS for Oracle Setup Guide](https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/rds-setup-guide), we select **SSH** as the connection method. In SQL Developer, using the admin account, we run the query below to create a dedicated service account for Fivetran and grant it the necessary access privileges.
@@ -54,6 +54,9 @@ For networking configuration, we create a new security group to allow inbound tr
 We then connect to the EC instance in the Terminal using SSH. Per [Fivetran's SSH guide](https://fivetran.com/docs/connectors/databases/connection-options#sshtunnel), we configure a fivetran user and enter the **Public SSH key** into the .ssh directory.
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%205%20(EC2%20SSH%20Configuration).png)
+
+Finally, we configure the Fivetran connection, providing details for both the SSH server (host, SSH user) and the Oracle RDS database (host, database user/password, service name).  
+We select **Fivetran Teleport Sync** as the connection method to enable CDC.
 
 ### 3b) Configuring Snowflake as Fivetran Destination
 
