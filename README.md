@@ -76,4 +76,16 @@ Using the **Partner Connect** feature in Snowflake, we automatically provision a
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%208%20(Snowflake%20Partner%20Connect).png)
 
 
+We generate an SSH public/private key pair locally using the terminal. The public key is then assigned to the Fivetran service account in a Snowflake SQL worksheet.
+
+```sql
+-- Assign the public SSH key to the Fivetran user. The private key was entered into Fivetran when configuring the destination
+ALTER USER PC_FIVETRAN_USER
+SET RSA_PUBLIC_KEY = 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAn4ObTHy7EYPAyQv6anCcaloNBJfmxUWlE5jIeiMv7dq0FQcocEe24CWLIiP88gFdqWNwa/stmiu1DtTCeT8mQFa4x7hFwgJmvlN5OUK8tI+ucqyZRBhcI+vGDCud4e7p9Gq4EMP3k65PnAm/L8AhtZp2QUiW8qrJX31rrJTjmnPxNxwgfgWyI0Hq3j4gR252Hqhb6K76tQ4UqRC3smDzohZDjsXdtGUfEt2cEd6V47+P04Jo6vPkEunyGiArpwNCoT9UGng6SmMJ6DxmABYMCz3i+8eGUarxlZ6RNhvdY2emPrn0Ve74hkKRKudRNb9lsdUsK8GgppiksUrz601YoQIDAQAB';
+```
+
+Finally, we configure Snowflake as the Fivetran destination, with most settings automatically pre-filled through Partner Connect.
+
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screnshot%209%20(Fivetran%20to%20Snowflake).png)
+
 ## 4) Automated Report Generation in Snowflake
