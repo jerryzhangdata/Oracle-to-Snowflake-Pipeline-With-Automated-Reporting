@@ -8,4 +8,4 @@ Demonstrates cloud ETL skills by building a secure data pipeline from Oracle (AW
 4) Automated Report Generation in Snowflake
 
 ## 1) Project Overview & Architecture
-![Project Architecture]([Project Architecture.png](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Project%20Architecture.png))
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Project%20Architecture.png)
