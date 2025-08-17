@@ -47,7 +47,7 @@ Next, we create an **EC2 instance** to serve as the **SSH Server**, tunneling Or
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%204%20(EC2%20SSH%20Server).png)
 
-For networking configuration, we once again create a new security group to allow inbound traffic from **TCP port 22** (SSH) from the internet. To ensure SSH Server retains the same IP/hostname after stopping/restarting, we assign the server an Elastic IP address (public static IP).
+For networking configuration, we create a new security group to allow inbound traffic on **TCP port 22 (SSH)** from the internet (in production, we would limit this to trusted IPs only). To ensure the SSH server retains the same IP/hostname after stopping/restarting, we assign the server an **Elastic IP** (static public IP).
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%206%20(Elastic%20IP).png)
 
