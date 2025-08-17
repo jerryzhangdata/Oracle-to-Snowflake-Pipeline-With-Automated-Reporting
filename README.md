@@ -8,11 +8,16 @@ Demonstrates cloud ETL skills by building a secure data pipeline from Oracle (AW
 4) [Automated Report Generation in Snowflake](#4-automated-report-generation-in-snowflake)  
 
 ## 1) Project Overview & Architecture
-![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Project%20Architecture.png)
+We begin by provisioning an Oracle database instance in **Amazon RDS** to serve as the source system.  For this demo, we selected the **minimum supported compute and storage configuration** (db.m5.large, 20 GiB GP3) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer). 
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/images/Project%20Architecture.png)
+
+For networking configuration, we select "Public Access:Yes" to allow access over the internet. We also create a security group allowing inbound connections from TCP port 1521 (Oracle Listener Port) and assign it the VPC (Virtual Private Cloud) network.
+
+
+
+
 
 ## 2) Provisioning Oracle Database in AWS RDS
-We begin by provisioning a database in AWS to use as our data source. In RDS (Relationship Database Service), we create an Oracle database using the minimum allowed storage and compute specifications. We configure the network settings to allow public access and ensure that TCP port 1521 is unblocked. Finally, we make record the Admin username/password and the Database name which is needed to connect to the database using Oracle SQL Developer.
-![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%201%20(AWS%20RDS).png)
 
 ## 3) Configuring Secure Connectivity and Database Access
 
