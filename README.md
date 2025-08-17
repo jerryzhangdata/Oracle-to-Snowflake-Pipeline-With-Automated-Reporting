@@ -4,7 +4,7 @@ Demonstrates cloud ETL skills by building a secure data pipeline from Oracle (AW
 ## Table of Contents
 1) [Project Overview & Architecture](#1-project-overview--architecture)  
 2) [Provisioning Oracle Database in AWS RDS](#2-provisioning-oracle-database-in-aws-rds)  
-3) [Configuring Secure Connectivity and Database Access via Fivetran](#3-configuring-secure-connectivity-and-database-access-via-fivetran)  
+3) [Secure Connectivity and Database Access via Fivetran](#3-secure-connectivity-and-database-access-via-fivetran)  
 4) [Automated Report Generation in Snowflake](#4-automated-report-generation-in-snowflake)  
 
 ## 1) Project Overview & Architecture
@@ -23,6 +23,6 @@ With the database provisioned, we verified connectivity by logging in via Oracle
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%203%20(Oracle%20Data%20Load).png)
 
-## 3) Configuring Secure Connectivity and Database Access via Fivetran
+## 3) Secure Connectivity and Database Access via Fivetran
 
 ## 4) Automated Report Generation in Snowflake
