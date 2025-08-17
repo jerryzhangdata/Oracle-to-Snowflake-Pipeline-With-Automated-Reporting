@@ -11,7 +11,7 @@ Demonstrates cloud ELT skills by building a secure data pipeline from Oracle (AW
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Project%20Architecture.png)
 
 ## 2) Provisioning Oracle Database in AWS RDS
-We begin by provisioning an Oracle database instance in **Amazon RDS** to serve as the source system.  For this demo, we selected the **minimum supported compute and storage configuration** (db.m5.large, 20 GiB GP3) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer).
+We begin by provisioning an Oracle database instance in **Amazon RDS** to serve as the source system.  For this demo, we selected the **minimum supported compute and storage configuration** (db.m5.large, 20 GiB) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer).
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%201%20(AWS%20RDS).png)
 
@@ -42,6 +42,12 @@ ALTER USER fivetran_user PROFILE fivetran_profile;
 -- Validate user creation
 SELECT USERNAME, PROFILE FROM DBA_USERS where USERNAME='FIVETRAN_USER';
 ```
+
+Next, we create an **EC2 instance** to serve as the **SSH Server**, tunneling Oracle traffic securely to Fivetran. For this demo, we once again selected a **minimal compute and storage configuration** (t3.micro, 8 GiB) to minimize cost.
+
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%204%20(EC2%20SSH%20Server).png)
+
+
 
 ### 3b) Configuring Snowflake as Fivetran Destination
 
