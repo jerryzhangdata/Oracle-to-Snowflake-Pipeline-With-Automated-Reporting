@@ -1,0 +1,9 @@
+name: app_environment
+channels:
+  - snowflake
+dependencies:
+  - matplotlib=*
+  - pandas=*
+  - plotly=*
+  - python-docx=*
+  - python-kaleido=*
