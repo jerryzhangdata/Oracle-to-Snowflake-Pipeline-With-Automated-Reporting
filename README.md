@@ -114,7 +114,7 @@ We query the Snowflake staging database and confirm that the new row has been lo
 ## 4) Automated Report Generation in Snowflake
 Using the sample dataset from Oracle, we generate a Word (.docx) report in a **Snowflake Notebook**. The report is created automatically with Python (`python-docx`) and saved to an **internal stage** for simple user access. This workflow allows users to generate reports entirely within Snowflake, with no local setup required.
 
-'''sql
+```sql
 -- Create an internal stage to store the file results
 CREATE DATABASE IF NOT EXISTS ORACLE_REPORT_DEMO;
 CREATE SCHEMA IF NOT EXISTS ORACLE_REPORT_DEMO.INTERNAL_STAGES;
@@ -122,4 +122,4 @@ CREATE STAGE IF NOT EXISTS ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REP
 
 -- Validate stage creation
 LIST @ORACLE_REPORT_DEMO.INTERNAL_STAGES.DRUG_DISCOVERY_REPORT;
-'''
+```
