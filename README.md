@@ -14,6 +14,7 @@ Demonstrates cloud ETL skills by building a secure data pipeline from Oracle (AW
 We begin by provisioning an Oracle database instance in **Amazon RDS** to serve as the source system.  For this demo, we selected the **minimum supported compute and storage configuration** (db.m5.large, 20 GiB GP3) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer). 
 
 For networking configuration, we select "Public Access:Yes" to allow access over the internet. We also create a security group allowing inbound connections from TCP port 1521 (Oracle Listener Port) and assign it the VPC (Virtual Private Cloud) network.
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%202%20(AWS%20Security%20Group).png)
 
 ## 3) Configuring Secure Connectivity and Database Access
 
