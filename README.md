@@ -71,6 +71,9 @@ Finally, we configure the Fivetran connection, providing details for both the SS
 
 
 ### 3b) Configuring Snowflake as Fivetran Destination
+Using the **Partner Connect** feature in Snowflake, we automatically provision a staging database, warehouse, and dedicated service account for Fivetran with the necessary access privileges.
+
+![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%208%20(Snowflake%20Partner%20Connect).png)
 
 
 ## 4) Automated Report Generation in Snowflake
