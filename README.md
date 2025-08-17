@@ -17,6 +17,8 @@ We begin by provisioning an Oracle database instance in **Amazon RDS** to serve 
 For networking configuration, we select "Public Access:Yes" to allow access over the internet. We also create a security group allowing inbound connections from TCP port 1521 (Oracle Listener Port) and assign it the VPC (Virtual Private Cloud) network.
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%202%20(AWS%20Security%20Group).png)
 
+With the database provisioned, we verified connectivity by logging in via Oracle SQL Developer using the admin credentials. Next, we loaded a sample **drug discovery dataset** from [Kaggle](https://www.kaggle.com/datasets/shahriarkabir/drug-discovery-virtual-screening-dataset) into the Oracle database for use in this pipeline.
+
 ## 3) Configuring Secure Connectivity and Database Access
 
 ## 4) Automated Report Generation in Snowflake
