@@ -231,5 +231,6 @@ session.file.put(
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2013%20(Internal%20Stage).png)
 
-Here is the report. Thank you for reading, I hope you enjoyed learning about my project!
-![](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Reports/Drug%20Discovery%20Compound%20Activity%20Analysis.pdf)
+Here is the report - [Drug Discovery Compound Activity Analysis](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Reports/Drug%20Discovery%20Compound%20Activity%20Analysis.pdf)
+
+Thank you for reading, I hope you enjoyed learning about my project! If you have any questions, I’d be glad to walk through the pipeline or the code in more detail.
