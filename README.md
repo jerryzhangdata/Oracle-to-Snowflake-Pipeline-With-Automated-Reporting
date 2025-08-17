@@ -214,7 +214,7 @@ plt.close()
 doc.add_picture(chart_directory, width = docx.shared.Inches(5.4))
 ```
 
-Finally, the completed Word report is saved to the internal stage, where users can access and download it without any local setup.
+The completed Word report is saved to the internal stage, where users can access and download it without any local setup.
 
 ```sql
 # Save to internal stage for easy user access
@@ -230,3 +230,6 @@ session.file.put(
 ```
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%2013%20(Internal%20Stage).png)
+
+Here is the report. Thank you for reading, I hope you enjoyed learning about my project!
+![](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Reports/Drug%20Discovery%20Compound%20Activity%20Analysis.pdf)
