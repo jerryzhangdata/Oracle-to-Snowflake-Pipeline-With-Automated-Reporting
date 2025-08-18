@@ -12,9 +12,9 @@ Demonstrates cloud ELT skills by building a secure data pipeline from Oracle (AW
 
 ## 1) Project Overview & Architecture
 Here is why I selected each component in the pipeline:
-- Oracle database (Data Source) - many enterprise systems, including legacy systems, run on Oracle. The goal is to move data from these systems into Snowflake for efficient analysis and reporting.
-- Fivetran (ELT Tool) - a managed cloud ELT service that is easy to configure. Fivetran support CDC (Continuous Data Capture) for Oracle databases, enabling real-time replication of database changes into Snowflake.
-- Snowflake (Data Warehouse) - a modern, managed cloud data warehouse designed for analytics. I explore its reporting capabilities by generating a Word (.docx) report in Python within a Snowflake Notebook and storing it in an internal stage for easy access.
+- **Oracle database (Data Source)** - many enterprise systems, including legacy systems, run on Oracle. The goal is to move data from these systems into Snowflake for efficient analysis and reporting.
+- **Fivetran (ELT Tool)** - a managed cloud ELT service that is easy to configure. Fivetran support CDC (Continuous Data Capture) for Oracle databases, enabling real-time replication of database changes into Snowflake.
+- **Snowflake (Data Warehouse)** - a modern, managed cloud data warehouse designed for analytics. I explore its reporting capabilities by generating a Word (.docx) report in Python within a Snowflake Notebook and storing it in an internal stage for easy access.
 
 Additionally, I provisioned the Oracle database in AWS using Amazon RDS to gain hands-on experience with cloud infrastructure, including server provisioning, networking configuration, and SSH authentication.
 
