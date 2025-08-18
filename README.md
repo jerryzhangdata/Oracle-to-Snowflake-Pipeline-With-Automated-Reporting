@@ -1,4 +1,4 @@
-# End-to-End-Oracle-to-Snowflake-Pipeline
+# Oracle-to-Snowflake-Pipeline-With-Automated-Reporting
 Demonstrates cloud ELT skills by building a secure data pipeline from Oracle (AWS RDS) to Snowflake using Fivetran over SSH (via an EC2 server). The project includes automated report generation with Python (python-docx) and staging the reports in Snowflake for easy user access.
 
 ## Table of Contents
