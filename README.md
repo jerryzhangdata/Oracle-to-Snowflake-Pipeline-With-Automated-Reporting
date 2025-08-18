@@ -21,15 +21,14 @@ Additionally, I provisioned the Oracle database in AWS using Amazon RDS to gain 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Project%20Architecture.png)
 
 ## 2) Provisioning Oracle Database in AWS RDS
-We begin by provisioning an Oracle database instance in **Amazon RDS** to serve as the source system.  For this demo, we selected the **minimum supported compute and storage configuration** (db.m5.large, 20 GiB) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer).
+We begin by provisioning an Oracle database instance in **AWS RDS** to serve as the source system.  For this demo, we selected the minimum supported compute and storage configuration (db.m5.large, 20 GiB) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer).
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%201%20(AWS%20RDS).png)
 
 
-For networking configuration, we set **"Public Access: Yes"** to allow access over the internet, and record the Endpoint (hostname). We also create a security group allowing inbound connections from **TCP port 1521** (Oracle Listener Port) and assign it the VPC (Virtual Private Cloud) network. 
+For networking configuration, we set "Public Access: Yes" to allow access over the internet, and record the Endpoint (hostname). We also create a **Security Group** allowing inbound connections from TCP port 1521 (Oracle Listener Port) and assign it the **VPC (Virtual Private Cloud)** network. 
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%202%20(AWS%20Security%20Group).png)
-
 
 With the database provisioned, we verified connectivity by logging in via Oracle SQL Developer using the admin credentials. Next, we loaded a sample drug discovery dataset from [Kaggle](https://www.kaggle.com/datasets/shahriarkabir/drug-discovery-virtual-screening-dataset) into the Oracle database for use in this pipeline.
 
@@ -37,10 +36,10 @@ With the database provisioned, we verified connectivity by logging in via Oracle
 
 
 ## 3) Secure Connectivity and Database Access via Fivetran
-We first configure the Oracle RDS database as a Fivetran Connection. Because RDS does not provide OS-level access for SSH, we configure an SSH tunnel through an EC2 instance acting as the SSH server. Next, we configure Snowflake as the Fivetran Destination, also using SSH for authentication. Finally, we validate the pipeline by inserting dummy data into Oracle and confirming it replicates into Snowflake.
+We first configure the Oracle RDS database as a **Fivetran** Connection. Because RDS does not provide OS-level access for **SSH**, we configure an SSH tunnel through an **EC2 instance** acting as the SSH server. Next, we configure Snowflake as the Fivetran Destination, also using SSH for authentication. Finally, we validate the pipeline by inserting dummy data into Oracle and confirming it replicates into **Snowflake**.
 
 ### 3a) Configuring Oracle RDS as Fivetran Connection
-Following Fivetran’s [Amazon RDS for Oracle Setup Guide](https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/rds-setup-guide), we selected **SSH** as the connection method. In SQL Developer, using the admin account, we ran the query below to create a dedicated service account for Fivetran and grant it the necessary access privileges.
+Following Fivetran’s [Amazon RDS for Oracle Setup Guide](https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/rds-setup-guide), we selected SSH as the connection method. In SQL Developer, using the admin account, we ran the query below to create a dedicated service account for Fivetran and grant it the necessary access privileges.
 
 ```sql
 -- Configured per fivetran setup guide: https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/setup-guide
@@ -57,17 +56,17 @@ SELECT USERNAME, PROFILE FROM DBA_USERS where USERNAME='FIVETRAN_USER';
 ```
 
 
-Next, we create an **EC2 instance** to serve as the **SSH Server**, tunneling Oracle traffic securely to Fivetran. For this demo, we once again selected a **minimal compute and storage configuration** (t3.micro, 8 GiB) to minimize cost.
+Next, we create an EC2 instance to serve as the SSH Server, tunneling Oracle traffic securely to Fivetran. For this demo, we once again selected a minimal compute and storage configuration (t3.micro, 8 GiB) to minimize cost.
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%204%20(EC2%20SSH%20Server).png)
 
 
-For networking configuration, we create a new security group to allow inbound traffic on **TCP port 22 (SSH)** from the internet (in production, we would limit this to trusted IPs only). To ensure the SSH server retains the same IP/hostname after stopping/restarting, we assign the server an **Elastic IP** (static public IP).
+For networking configuration, we create a new security group to allow inbound traffic on TCP port 22 (SSH) from the internet (in production, we would limit this to trusted IPs only). To ensure the SSH server retains the same IP/hostname after stopping/restarting, we assign the server an **Elastic IP** (static public IP).
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%206%20(Elastic%20IP).png)
 
 
-We then connect to the EC2 instance in the Terminal using SSH. Per [Fivetran's SSH guide](https://fivetran.com/docs/connectors/databases/connection-options#sshtunnel), we configure a fivetran user and enter the **Public SSH key** into the .ssh directory.
+We then connect to the EC2 instance in the Terminal using SSH. Per [Fivetran's SSH guide](https://fivetran.com/docs/connectors/databases/connection-options#sshtunnel), we configure a Fivetran user and enter the Public SSH key into the .ssh directory.
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%205%20(EC2%20SSH%20Configuration).png)
 
@@ -116,7 +115,7 @@ We query the Snowflake staging database and confirm that the new row has been lo
 
 
 ## 4) Automated Report Generation in Snowflake
-Using the sample dataset from Oracle, we generate a Word (.docx) report in a **Snowflake Notebook**. The report is created programmatically with **Python ('python-docx')** and saved to an **internal stage** for simple user access. This workflow enables users to generate reports directly within Snowflake, eliminating the need for any local setup.
+Using the sample dataset from Oracle, we generate a Word (.docx) report in a **Snowflake Notebook**. The report is created programmatically with **Python (python-docx)** and saved to an **internal stage** for simple user access. This workflow enables users to generate reports directly within Snowflake, eliminating the need for any local setup.
 
 We start by creating an internal stage to store the Word report. In production, we could give users access to this stage so reports can be downloaded directly.
 ```sql
@@ -150,7 +149,7 @@ SELECT
 FROM PC_FIVETRAN_DB.ORACLE_RDS_DRUG_DISCOVERY_ADMIN.DRUG_DISCOVERY
 GROUP BY ACTIVE;
 ```
-To generate the report, we first load the query results into Pandas dataframes. Next, we use the **python-docx** package to build the Word document, including a header, paragraph, and table. Finally, we create a scatter plot in **Matplotlib** and insert it into the report with python-docx.
+To generate the report, we first load the query results into Pandas dataframes. Next, we use the python-docx package to build the Word document, including a header, paragraph, and table. Finally, we create a scatter plot in **Matplotlib** and insert it into the report with python-docx.
 
 ```python
 # Generate the word document report
