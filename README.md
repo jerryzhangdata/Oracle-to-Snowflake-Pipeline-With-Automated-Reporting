@@ -185,25 +185,25 @@ run_2 = paragraph_2.add_run('Table 1: Summary of Compound Properties').italics =
 # Create sample chart
 plt.scatter(
     drug_data.loc[drug_data['ACTIVE'] == 0, 'MOLECULAR_WEIGHT'],
-    drug_data.loc[drug_data['ACTIVE'] == 0, 'HYDROPHOBICITY'],
+    drug_data.loc[drug_data['ACTIVE'] == 0, 'BINDING_AFFINITY'],
     alpha = 0.7,
     label = 'Inactive',
     color = 'grey'
 )
 plt.scatter(
     drug_data.loc[drug_data['ACTIVE'] == 1, 'MOLECULAR_WEIGHT'],
-    drug_data.loc[drug_data['ACTIVE'] == 1, 'HYDROPHOBICITY'],
+    drug_data.loc[drug_data['ACTIVE'] == 1, 'BINDING_AFFINITY'],
     alpha = 0.7,
     label = 'Active',
     color = 'red'
 )
 plt.title(
-    'Chart 1: Hydrophobicity vs. Molecular Weight',
+    'Chart 1: Binding Affinity vs. Molecular Weight',
     fontstyle = 'italic',
     loc = 'left'
 )
 plt.xlabel('Molecular Weight (g/mol)')
-plt.ylabel('Hydrophobicity')
+plt.ylabel("Binding Affinity (−log10[M])")
 plt.legend()
 # Convert to image to insert on word doc
 current_directory = os.getcwd()
