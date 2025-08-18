@@ -1,5 +1,5 @@
 # End-to-End-Oracle-to-Snowflake-Pipeline
-Demonstrates cloud ELT skills by building a secure data pipeline from Oracle (AWS RDS) to Snowflake using Fivetran over SSH (via an EC2 server). The project includes automated report generation with Python (python-docx) and staging in Snowflake for simple user access.
+Demonstrates cloud ELT skills by building a secure data pipeline from Oracle (AWS RDS) to Snowflake using Fivetran over SSH (via an EC2 server). The project includes automated report generation with Python (python-docx) and staging the reports in Snowflake for easy user access.
 
 
 ## Table of Contents
@@ -21,7 +21,7 @@ We begin by provisioning an Oracle database instance in **Amazon RDS** to serve 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%201%20(AWS%20RDS).png)
 
 
-For networking configuration, we select **"Public Access:Yes"** to allow access over the internet, and record the Endpoint (hostname). We also create a security group allowing inbound connections from **TCP port 1521** (Oracle Listener Port) and assign it the VPC (Virtual Private Cloud) network. 
+For networking configuration, we set **"Public Access: Yes"** to allow access over the internet, and record the Endpoint (hostname). We also create a security group allowing inbound connections from **TCP port 1521** (Oracle Listener Port) and assign it the VPC (Virtual Private Cloud) network. 
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%202%20(AWS%20Security%20Group).png)
 
@@ -32,11 +32,10 @@ With the database provisioned, we verified connectivity by logging in via Oracle
 
 
 ## 3) Secure Connectivity and Database Access via Fivetran
-To move data from Oracle into Snowflake, we the managed ELT service **Fivetran**. Fivetran enables **CDC (Change Data Capture)**, automatically detecting new or updated records in Oracle and pushing them to Snowflake.
-
+To move data from Oracle into Snowflake, we use the managed ELT service **Fivetran**. Fivetran enables **CDC (Change Data Capture)**, automatically detecting new or updated records in Oracle and pushing them to Snowflake.
 
 ### 3a) Configuring Oracle RDS as Fivetran Connection
-Per the Fivetran [Amazon RDS for Oracle Setup Guide](https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/rds-setup-guide), we select **SSH** as the connection method. In SQL Developer, using the admin account, we run the query below to create a dedicated service account for Fivetran and grant it the necessary access privileges.
+Following Fivetran’s [Amazon RDS for Oracle Setup Guide](https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/rds-setup-guide), we selected **SSH** as the connection method. In SQL Developer, using the admin account, we ran the query below to create a dedicated service account for Fivetran and grant it the necessary access privileges.
 
 ```sql
 -- Configured per fivetran setup guide: https://fivetran.com/docs/connectors/databases/oracle/oracle-connector/setup-guide
@@ -63,7 +62,7 @@ For networking configuration, we create a new security group to allow inbound tr
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%206%20(Elastic%20IP).png)
 
 
-We then connect to the EC instance in the Terminal using SSH. Per [Fivetran's SSH guide](https://fivetran.com/docs/connectors/databases/connection-options#sshtunnel), we configure a fivetran user and enter the **Public SSH key** into the .ssh directory.
+We then connect to the EC2 instance in the Terminal using SSH. Per [Fivetran's SSH guide](https://fivetran.com/docs/connectors/databases/connection-options#sshtunnel), we configure a fivetran user and enter the **Public SSH key** into the .ssh directory.
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%205%20(EC2%20SSH%20Configuration).png)
 
@@ -79,7 +78,7 @@ Using the **Partner Connect** feature in Snowflake, we automatically provision a
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%208%20(Snowflake%20Partner%20Connect).png)
 
 
-We generate an SSH public/private key pair locally using the terminal. The public key is then assigned to the Fivetran service account in a Snowflake SQL worksheet.
+We generate an SSH public/private key pair locally using the terminal. We then assign the public key to the Fivetran service account in a Snowflake SQL worksheet.
 
 ```sql
 -- Assign the public SSH key to the Fivetran user. The private key was entered into Fivetran when configuring the destination
@@ -112,7 +111,7 @@ We query the Snowflake staging database and confirm that the new row has been lo
 
 
 ## 4) Automated Report Generation in Snowflake
-Using the sample dataset from Oracle, we generate a Word (.docx) report in a **Snowflake Notebook**. The report is created programmatically with **Python ('python-docx')** and saved to an **internal stage** for simple user access. This workflow allows users to generate reports entirely within Snowflake, with no local setup required.
+Using the sample dataset from Oracle, we generate a Word (.docx) report in a **Snowflake Notebook**. The report is created programmatically with **Python ('python-docx')** and saved to an **internal stage** for simple user access. This workflow enables users to generate reports directly within Snowflake, eliminating the need for any local setup.
 
 We start by creating an internal stage to store the Word report. In production, we could give users access to this stage so reports can be downloaded directly.
 ```sql
@@ -233,4 +232,4 @@ session.file.put(
 
 Here is the report - [Drug Discovery Compound Activity Analysis](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Reports/Drug%20Discovery%20Compound%20Activity%20Analysis.pdf)
 
-Thank you for reading, I hope you enjoyed learning about my project! If you have any questions, I’d be glad to walk through the pipeline or the code in more detail.
+Thank you for reading, I hope you enjoyed learning about my project! If you have any questions, I’m glad to walk through the pipeline or the code in more detail.
