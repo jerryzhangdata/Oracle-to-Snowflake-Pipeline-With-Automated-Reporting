@@ -21,7 +21,7 @@ Additionally, I provisioned the Oracle database in AWS using Amazon RDS to gain 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Project%20Architecture.png)
 
 ## 2) Provisioning Oracle Database in AWS RDS
-We begin by provisioning an Oracle database instance in **AWS RDS** to serve as the source system.  For this demo, we selected the minimum supported compute and storage configuration (db.m5.large, 20 GiB) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer).
+We begin by provisioning an **Oracle** database instance in **AWS RDS** to serve as the source system.  For this demo, we selected the minimum supported compute and storage configuration (db.m5.large, 20 GiB) to minimize cost. We record the credentials DB name (ORCL) and the master (admin) username/password (required for connecting via Oracle SQL Developer).
 
 ![alt text](https://github.com/jerryzhangdata/End-to-End-Oracle-to-Snowflake-Pipeline/blob/main/Images/Screenshot%201%20(AWS%20RDS).png)
 
